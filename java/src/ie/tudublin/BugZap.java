@@ -68,8 +68,6 @@ public class BugZap extends PApplet
         strokeWeight(5);
         stroke(255, 255, 255);
 
-        float height = width / 2;
-
         noFill();
         rectMode(CENTER);
         rect(x,y, width,20);
@@ -106,7 +104,9 @@ public class BugZap extends PApplet
 		{
             float halfW = bugWidth / 2;
 
+            stroke(0, 255, 0);
             line(playerX, playerY - 10, playerX, 0);
+            noFill();
             if (playerX > bugX - halfW && playerX < bugX + halfW)
             {
                 score++;
