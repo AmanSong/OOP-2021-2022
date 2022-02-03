@@ -12,6 +12,8 @@ public class BugZap extends PApplet
     float bugY = 20;
     float bugWidth = 10;
 
+    int score = 0;
+
     public void settings()
     {
         size(500, 500);
@@ -22,6 +24,8 @@ public class BugZap extends PApplet
         colorMode(RGB);
         smooth();
         background(0);
+
+        resetBug();
     }
 
     public void draw()
@@ -49,6 +53,14 @@ public class BugZap extends PApplet
                 return;
             }
         }
+        text("Score: " + score, 50, 50);
+    }
+
+    private  void resetBug()
+    {
+        bugX = random(bugWidth / 2, width - (bugWidth / 2));
+        bugY = 50;
+        bugWidth = 50;
     }
 
     public void drawPlayer(float x, float y, float width)
@@ -92,7 +104,14 @@ public class BugZap extends PApplet
 		}
 		if (key == ' ')
 		{
-            line(playerX, playerY - 500, playerWidth + playerX, height + playerY);
+            float halfW = bugWidth / 2;
+
+            line(playerX, playerY - 10, playerX, 0);
+            if (playerX > bugX - halfW && playerX < bugX + halfW)
+            {
+                score++;
+                resetBug();
+            }
 			System.out.println("SPACE key pressed");
 		}
 	}	
@@ -101,8 +120,6 @@ public class BugZap extends PApplet
     {
         strokeWeight(4);
         stroke(255, 255, 255);
-
-        float height = width / 2;
 
         rectMode(CENTER);
         rect(x,y, width,20);
