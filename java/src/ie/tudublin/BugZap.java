@@ -36,16 +36,16 @@ public class BugZap extends PApplet
             float randX = random(-50, 50);
 
             bugX = bugX + randX;
-            bugY = bugY + 5;
+            bugY = bugY + 10;
 
             if (bugX <= 0)
             {
-                bugX = bugX + randX;
+                bugX = bugX + randX*2;
                 return;
             }
             else if (bugX >= 500)
             {
-                bugX = bugX - randX;
+                bugX = bugX - randX*2;
                 return;
             }
         }
@@ -58,7 +58,10 @@ public class BugZap extends PApplet
 
         float height = width / 2;
 
-        line(x, y, width + x, height + y);
+        noFill();
+        rectMode(CENTER);
+        rect(x,y, width,20);
+        line(x, y - 10, x, y- 20);
     }
 
     public void keyPressed()
@@ -101,7 +104,8 @@ public class BugZap extends PApplet
 
         float height = width / 2;
 
-        line(x, y, width + x, height + y);
+        rectMode(CENTER);
+        rect(x,y, width,20);
     }
 
 }
