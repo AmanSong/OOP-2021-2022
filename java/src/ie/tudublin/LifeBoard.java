@@ -99,6 +99,14 @@ public class LifeBoard {
 
     }
 
+    public void setAlive(int row, int col, boolean alive)
+    {
+        if(row >= 0 && row < size && col >= 0 && col < size)
+        {
+            board[row][col] = alive;
+        }
+    }
+
     public boolean isAlive(int row, int col)
     {
         if(row >= 0 && row < size && col >= 0 && col < size)
@@ -126,7 +134,10 @@ public class LifeBoard {
 
                 if(board[row][col])
                 {
-                    pa.fill(0, 255, 0);
+                    int randColor1 = (int) pa.random(0,255);
+                    int randColor2 = (int) pa.random(0,255);
+                    int randColor3 = (int) pa.random(0,255);
+                    pa.fill(randColor1,randColor2,randColor3);
                 }
                 else
                 {
