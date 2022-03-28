@@ -109,5 +109,10 @@ public class Audio2 extends PApplet
         textSize(20);
         fill(255);
         text("Frequency: " + freq, 100, 200);
+        PitchSpeller ps = new PitchSpeller();
+        text(ps.spell(freq), 200, 300);
+
     }        
+    
 }
+
