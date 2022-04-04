@@ -3,6 +3,7 @@ package ie.tudublin;
 public class Player 
 {
     float x, y;
+    float fx, fy;
     float w;
     float halfW;
 
@@ -22,13 +23,16 @@ public class Player
 
     void render()
     {
+        yasc.pushMatrix();
+        yasc.translate(x, y);
         yasc.rotate(rotation);
         float halfW = w / 2;
         yasc.stroke(255);
-        yasc.line(x - halfW, y + halfW, x, y - halfW);
-        yasc.line(x, y - halfW, x + halfW, y + halfW);
-        yasc.line(x + halfW, y + halfW, x, y);
-        yasc.line(x, y, x - halfW, y + halfW);
+        yasc.line( - halfW, halfW, 0,  - halfW);
+        yasc.line(0,  - halfW, halfW, halfW);
+        yasc.line(halfW, halfW, 0, 0);
+        yasc.line(0, 0, - halfW, halfW);
+        yasc.popMatrix();
     }
 
     public void update()
@@ -37,21 +41,25 @@ public class Player
         {
             if(yasc.key == 'w')
             {
-                y--;
+                x += fx;
+                y += fy;
             }
             if(yasc.key == 's')
             {
-                y++;
+                x -= fx;
+                y -= fy;
             }
             if(yasc.key == 'a')
             {
-                rotation -= 0.01f;
+                rotation -= 0.05f;
             }
             if(yasc.key == 'd')
             {
-                rotation += 0.01f;
+                rotation += 0.05f;
             }
         }
+        fx = YASC.sin(rotation);
+        fy = - YASC.cos(rotation);
     }
 
 }
